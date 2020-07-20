@@ -93,3 +93,5 @@ app/.DS_Store
 .idea/
 
 app/google-services.json
+
+app/credentials.json
