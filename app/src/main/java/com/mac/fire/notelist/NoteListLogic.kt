@@ -58,7 +58,7 @@ class NoteListLogic(dispatcher: DispatcherProvider,
         getListData(vModel.getIsPrivateMode())
     }
 
-    fun getListData(isPrivateMode: Boolean) = launch {
+    private fun getListData(isPrivateMode: Boolean) = launch {
         val dataResult: Result<Exception, List<Note>>
 
         when (isPrivateMode) {
@@ -78,17 +78,17 @@ class NoteListLogic(dispatcher: DispatcherProvider,
         }
     }
 
-    suspend fun getPublicListData(): Result<Exception, List<Note>> {
+    private suspend fun getPublicListData(): Result<Exception, List<Note>> {
         return if (vModel.getUserState() != null) publicNoteSource.getNotes(noteLocator)
         else Result.build { throw SpaceNotesError.LocalIOException }
     }
 
-    suspend fun getPrivateListData(): Result<Exception, List<Note>> {
+    private suspend fun getPrivateListData(): Result<Exception, List<Note>> {
         return if (vModel.getUserState() == null) anonymousNoteSource.getNotes(noteLocator)
         else registeredNoteSource.getNotes(noteLocator)
     }
 
-    fun renderView(list: List<Note>) {
+    private fun renderView(list: List<Note>) {
         view.setPrivateIcon(vModel.getIsPrivateMode())
         if (vModel.getIsPrivateMode()) view.setToolbarTitle(MODE_PRIVATE)
         else view.setToolbarTitle(MODE_PUBLIC)
@@ -119,6 +119,7 @@ class NoteListLogic(dispatcher: DispatcherProvider,
     }
 
     private fun onNoteItemClick(position: Int) {
+
         val listData = vModel.getAdapterState()
 
         view.startNoteDetailFeatureWithExtras(
@@ -126,7 +127,7 @@ class NoteListLogic(dispatcher: DispatcherProvider,
     }
 
 
-    fun bind() {
+    private fun bind() {
         view.setToolbarTitle(MODE_PRIVATE)
         view.showLoadingView()
         adapter.setObserver(this)
@@ -141,6 +142,6 @@ class NoteListLogic(dispatcher: DispatcherProvider,
     }
 
     //Single Expression Syntax
-    fun clear() = jobTracker.cancel()
+    private fun clear() = jobTracker.cancel()
 
 }

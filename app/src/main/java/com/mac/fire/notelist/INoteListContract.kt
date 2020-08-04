@@ -43,6 +43,7 @@ interface INoteListContract {
 
 sealed class NoteListEvent<out T> {
     data class OnNoteItemClick<out Int>(val position: Int) : NoteListEvent<Int>()
+
     object OnNewNoteClick : NoteListEvent<Nothing>()
     object OnLoginClick : NoteListEvent<Nothing>()
     object OnTogglePublicMode : NoteListEvent<Nothing>()

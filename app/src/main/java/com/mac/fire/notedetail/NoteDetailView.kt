@@ -11,10 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.mac.fire.R
-import com.mac.fire.R.id.*
 import com.mac.fire.common.*
-import com.mac.fire.notedetail.buildlogic.NoteDetailInjector
-import com.mac.fire.notelist.NoteListEvent
 import kotlinx.android.synthetic.main.fragment_note_detail.*
 
 

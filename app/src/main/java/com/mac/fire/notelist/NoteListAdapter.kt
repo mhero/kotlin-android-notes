@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ListAdapter
@@ -16,7 +17,8 @@ import com.mac.fire.R
 import kotlinx.android.synthetic.main.item_note.view.*
 
 
-class NoteListAdapter(var event: MutableLiveData<NoteListEvent<Int>> = MutableLiveData()  ) : ListAdapter<Note, NoteListAdapter.NoteViewHolder>(NoteDiffUtilCallback()) {
+class NoteListAdapter(var event: MutableLiveData<NoteListEvent<Int>> = MutableLiveData()) :
+        ListAdapter<Note, NoteListAdapter.NoteViewHolder>(NoteDiffUtilCallback()) {
 
     internal fun setObserver(observer: Observer<NoteListEvent<Int>>) = event.observeForever(observer)
 
@@ -30,6 +32,10 @@ class NoteListAdapter(var event: MutableLiveData<NoteListEvent<Int>> = MutableLi
                 holder.itemView.setOnClickListener {
                     event.value = NoteListEvent.OnNoteItemClick(position)
 
+                }
+                holder.itemView.setOnLongClickListener{
+                    event.value = NoteListEvent.OnDestroy
+                    true
                 }
             }
         }

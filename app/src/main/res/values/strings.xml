@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SpaceNotes</string>
     <string name="default_web_client_id">956706562282-5lenstkqgal8c25iekf56m64cj3v2tf2.apps.googleusercontent.com</string>
+    <string name="back_button">Back Button</string>
+    <string name="login_status">Login Status:</string>
+    <string name="todo">TODO</string>
 </resources>

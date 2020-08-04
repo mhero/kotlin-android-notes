@@ -36,7 +36,10 @@ class NoteListView : Fragment(), INoteListContract.View {
 
     override fun startLoginFeature() = com.mac.fire.common.startLoginFeature(this.activity)
 
-    override fun startNoteDetailFeatureWithExtras(noteId: String, isPrivate: Boolean) = com.mac.fire.common.startNoteDetailFeatureWithExtras(this.activity, noteId, isPrivate)
+    override fun startNoteDetailFeatureWithExtras(
+            noteId: String,
+            isPrivate: Boolean
+    ) = com.mac.fire.common.startNoteDetailFeatureWithExtras(this.activity, noteId, isPrivate)
 
     override fun setToolbarTitle(title: String) {
         lbl_toolbar_title.text = title

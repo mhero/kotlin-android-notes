@@ -1,6 +1,5 @@
 package com.mac.fire.common
 
-import android.app.Activity
 import android.content.Intent
 
 import android.text.Editable
@@ -16,13 +15,13 @@ import java.util.*
 internal fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
 
 
-internal fun Activity.attachFragment(manager: FragmentManager, containerId: Int, view: Fragment, tag: String) {
+internal fun attachFragment(manager: FragmentManager, containerId: Int, view: Fragment, tag: String) {
     manager.beginTransaction()
             .replace(containerId, view, tag)
             .commitNowAllowingStateLoss()
 }
 
-internal fun Fragment.getCalendarTime(): String {
+internal fun getCalendarTime(): String {
     val cal = Calendar.getInstance(TimeZone.getDefault())
     val format = SimpleDateFormat("d MMM yyyy HH:mm:ss Z")
     format.timeZone = cal.timeZone
@@ -34,16 +33,15 @@ internal fun Fragment.makeToast(value: String) {
 }
 
 internal fun Fragment.restartCurrentFeature() {
-    val i: Intent
-    when (this) {
+    val i: Intent = when (this) {
         is NoteDetailView -> {
-            i = Intent(this.activity, NoteDetailActivity::class.java)
+            Intent(this.activity, NoteDetailActivity::class.java)
         }
 
         //To Be Added
 
         else -> {
-            i = Intent(this.activity, NoteListActivity::class.java)
+            Intent(this.activity, NoteListActivity::class.java)
         }
     }
 

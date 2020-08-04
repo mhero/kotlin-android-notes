@@ -57,9 +57,7 @@ class LoginLogic(dispatcher: DispatcherProvider,
     private fun onAuthButtonClick() = launch {
         view.showLoopAnimation()
 
-        val authResult = authSource.getCurrentUser(userLocator)
-
-        when (authResult) {
+        when (val authResult = authSource.getCurrentUser(userLocator)) {
             is Result.Value -> {
                 if (authResult.value == null) view.startSignInFlow()
                 else signUserOut()
@@ -81,9 +79,8 @@ class LoginLogic(dispatcher: DispatcherProvider,
     }
 
     private suspend fun signUserOut() {
-        val signOutResult = authSource.signOutCurrentUser(userLocator)
 
-        when (signOutResult) {
+        when (authSource.signOutCurrentUser(userLocator)) {
             is Result.Value -> renderNullUser()
             is Result.Error -> renderErrorState(ERROR_AUTH)
         }
@@ -97,9 +94,7 @@ class LoginLogic(dispatcher: DispatcherProvider,
     private fun onStart() = launch {
         view.showLoopAnimation()
 
-        val authResult = authSource.getCurrentUser(userLocator)
-
-        when (authResult) {
+        when (val authResult = authSource.getCurrentUser(userLocator)) {
             is Result.Value -> {
                 if (authResult.value == null) renderNullUser()
                 else renderActiveUser()

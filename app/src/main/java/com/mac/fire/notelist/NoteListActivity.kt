@@ -1,12 +1,7 @@
 package com.mac.fire.notelist
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.mac.fire.R
 import com.mac.fire.common.attachFragment
 import com.mac.fire.notelist.buildlogic.NoteListInjector
